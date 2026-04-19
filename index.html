@@ -12,12 +12,17 @@
 <meta name="keywords" content="Animal Science degree, Fisheries degree Sri Lanka, University of Peradeniya Agriculture, B.Sc. Animal Science, Aquaculture studies, Livestock management degree">
 <meta name="robots" content="index, follow">
 
+<!-- Preconnect to Google Fonts for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1a3a2a">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --forest: #1a3a2a;
@@ -83,6 +88,16 @@
     top: 0;
   }
 
+  /* Accessibility: Respect Reduced Motion Preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
@@ -119,7 +134,6 @@
     border-radius: 50%;
     border: 1px solid rgba(184,212,192,0.12);
   }
-  /* FIXED: Use :first-of-type and :last-of-type instead of nth-child */
   .deco-circle:first-of-type { width: 500px; height: 500px; top: -100px; right: -100px; }
   .deco-circle:last-of-type { width: 300px; height: 300px; bottom: 40px; left: -80px; border-color: rgba(42,90,122,0.2); }
 
@@ -675,6 +689,12 @@
     letter-spacing: 0.06em;
   }
 
+  .footer-credits {
+    margin-top: 1rem;
+    font-size: 0.65rem;
+    opacity: 0.3;
+  }
+
   /* ── ANIMATIONS ───────────────────────────────────── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -917,266 +937,282 @@
 <!-- FOOTER -->
 <footer>
   <p>B.Sc. Animal Science &amp; Fisheries · Faculty of Agriculture · University of Peradeniya · Sri Lanka</p>
-  <p style="margin-top: 1rem; font-size: 0.65rem; opacity: 0.3;">Designed &amp; Built by IHAN INDEEPA</p>
+  <p class="footer-credits">Designed &amp; Built by IHAN INDEEPA</p>
 </footer>
 
 <script>
-const SEMESTERS = [
-  {
-    num: 1, label: "Semester 1", notation: "1100", credits: 16,
-    courses: [
-      { code: "ASF 1101", name: "Animal Biochemistry", credits: 2, type: "C" },
-      { code: "ASF 1102", name: "Anatomy & Physiology of Farm Animals", credits: 2, type: "C" },
-      { code: "ASF 1103", name: "Anatomy and Physiology of Fish", credits: 1, type: "C" },
-      { code: "ASF 1104", name: "Livestock Farm Practice", credits: 1, type: "C" },
-      { code: "ASF 1105", name: "Industrial Training in Animal Production & Fisheries", credits: 3, type: "C" },
-      { code: "ASF 1106", name: "Immunology", credits: 1, type: "C" },
-      { code: "ASF 1107", name: "Principles of Genetics & Animal Breeding", credits: 2, type: "C" },
-      { code: "AS 2102",  name: "Principles of Animal Nutrition", credits: 2, type: "C" },
-      { code: "AS 2103",  name: "Forage Production and Conservation", credits: 2, type: "C" },
-    ]
-  },
-  {
-    num: 2, label: "Semester 2", notation: "1200", credits: 18,
-    courses: [
-      { code: "ASF 1201", name: "Fish Nutrition", credits: 1, type: "C" },
-      { code: "ASF 1202", name: "Aquatic Plants & Live Feeds", credits: 2, type: "C" },
-      { code: "ASF 1203", name: "Fish Breeding & Fish Seed Production", credits: 3, type: "C" },
-      { code: "ASF 1204", name: "Analytical Techniques in Animal Feed & Products", credits: 2, type: "C" },
-      { code: "AS 2201",  name: "Ruminant Animal Production", credits: 2, type: "C" },
-      { code: "AS 2202",  name: "Poultry and Swine Production", credits: 2, type: "C" },
-      { code: "SS 1201",  name: "Properties & Functions of Soils", credits: 3, type: "C" },
-      { code: "CS 1201",  name: "Principles of Crop Production", credits: 3, type: "C" },
-    ]
-  },
-  {
-    num: 3, label: "Semester 3", notation: "2100", credits: 18, optional: 2,
-    courses: [
-      { code: "ASF 2101", name: "Marine & Inland Fisheries", credits: 3, type: "C" },
-      { code: "ASF 2102", name: "Animal Environmental Physiology", credits: 1, type: "C" },
-      { code: "ASF 2103", name: "Poultry, Cattle & Swine Diseases", credits: 3, type: "C" },
-      { code: "ASF 2104", name: "Shrimp and Prawn Farming", credits: 2, type: "C" },
-      { code: "ASF 2105", name: "Animal Behaviour & Welfare", credits: 2, type: "C" },
-      { code: "ASF 2106", name: "Microlivestock Production", credits: 2, type: "C" },
-      { code: "EB 2101",  name: "Principles of Economics", credits: 3, type: "C" },
-      { code: "ASF 2107", name: "Pet Animal Nutrition", credits: 2, type: "O" },
-      { code: "ASF 2108", name: "Equine Nutrition & Management", credits: 2, type: "O" },
-      { code: "ASF 2109", name: "Agro-ecotourism", credits: 1, type: "O" },
-    ]
-  },
-  {
-    num: 4, label: "Semester 4", notation: "2200", credits: 18, optional: 2, training: true,
-    courses: [
-      { code: "ASF 2201", name: "Beef Cattle Production", credits: 1, type: "C" },
-      { code: "ASF 2202", name: "Animal Waste Management", credits: 2, type: "C" },
-      { code: "ASF 2203", name: "Ornamental Fisheries Management", credits: 2, type: "C" },
-      { code: "ASF 2204", name: "Diseases of Fin Fish & Shell Fish", credits: 1, type: "C" },
-      { code: "AS 3201",  name: "Applied Animal Nutrition", credits: 3, type: "C" },
-      { code: "AS 3206",  name: "Feed Processing Technology", credits: 1, type: "C" },
-      { code: "EX 2201",  name: "Principles of Human Behaviour", credits: 3, type: "C" },
-      { code: "EX 2202",  name: "Career Development", credits: 1, type: "C" },
-      { code: "FT 3202",  name: "Food Microbiology", credits: 2, type: "C" },
-      { code: "ASF 2205", name: "Traditional Practices in Livestock Production", credits: 1, type: "O" },
-      { code: "FT 2202",  name: "Preservation of Agricultural Produce", credits: 2, type: "O" },
-      { code: "FT 1201",  name: "Biochemistry and Human Nutrition", credits: 3, type: "O" },
-      { code: "EB 2201",  name: "Development Economics", credits: 2, type: "O" },
-    ]
-  },
-  {
-    num: 5, label: "Semester 5", notation: "3100", credits: 17, optional: 2,
-    courses: [
-      { code: "ASF 3101", name: "Meat and Fish Processing Technology", credits: 2, type: "C" },
-      { code: "ASF 3102", name: "Fisheries Resource Management", credits: 2, type: "C" },
-      { code: "CS 3102",  name: "Statistical Methods I", credits: 2, type: "C" },
-      { code: "ASF 3103", name: "Livestock Farm Structures and Machinery", credits: 1, type: "C" },
-      { code: "AS 4102",  name: "Applied Genetics and Animal Breeding", credits: 2, type: "C" },
-      { code: "ASF 3104", name: "Milk Procurement and Marketing", credits: 1, type: "C" },
-      { code: "ASF 3105", name: "Slaughterhouse Management", credits: 1, type: "C" },
-      { code: "ASF 3106", name: "Livestock & Fish Legislation", credits: 2, type: "C" },
-      { code: "ASF 3107", name: "Wildlife Management", credits: 2, type: "C" },
-      { code: "EB 3101",  name: "Business Creation and Management", credits: 2, type: "O" },
-      { code: "EX 3101",  name: "Organizational Management", credits: 2, type: "O" },
-      { code: "FT 4101",  name: "Food Analysis", credits: 2, type: "O" },
-    ]
-  },
-  {
-    num: 6, label: "Semester 6", notation: "3200", credits: 17, optional: 2, training: true,
-    courses: [
-      { code: "AS 3202",  name: "Dairy Product Technology", credits: 2, type: "C" },
-      { code: "ASF 3201", name: "Poultry Meat Processing and Egg Technology", credits: 2, type: "C" },
-      { code: "AS 3203",  name: "Applied Animal Physiology", credits: 2, type: "C" },
-      { code: "AS 3205",  name: "Forage Resources and Production", credits: 2, type: "C" },
-      { code: "CS 3201",  name: "Design and Analysis of Experiments", credits: 2, type: "C" },
-      { code: "EB 3204",  name: "Marketing Management", credits: 2, type: "C" },
-      { code: "CS/AS 3201", name: "Farming Systems", credits: 2, type: "C" },
-      { code: "EB 3201",  name: "Project Analysis", credits: 1, type: "C" },
-      { code: "EX 3201",  name: "Extension Education", credits: 2, type: "O" },
-      { code: "EX 3202",  name: "Communication: Theory and Practice", credits: 2, type: "O" },
-      { code: "EB 3205",  name: "Agricultural Marketing", credits: 2, type: "O" },
-    ]
-  },
-  {
-    num: 7, label: "Semester 7", notation: "4100", credits: 18, optional: 2,
-    courses: [
-      { code: "AS 4109",  name: "Animal By-product Technology", credits: 2, type: "C" },
-      { code: "AS 4110",  name: "Livestock Farm Planning", credits: 2, type: "C" },
-      { code: "AS 4105",  name: "Scientific Research & Communication in Animal Science", credits: 1, type: "C" },
-      { code: "AS 4111",  name: "Integrated Animal Production Systems", credits: 2, type: "C" },
-      { code: "AS 4106",  name: "Animal Biotechnology", credits: 2, type: "C" },
-      { code: "ASF 4102", name: "Animal Quarantine and Bio-security", credits: 1, type: "C" },
-      { code: "CS 4103",  name: "Statistical Methods II", credits: 2, type: "C" },
-      { code: "EB 4111",  name: "Livestock and Fisheries Economics", credits: 2, type: "C" },
-      { code: "EB 4109",  name: "Advanced Project Analysis", credits: 2, type: "C" },
-      { code: "EX 4107",  name: "Gender Issues in Development", credits: 2, type: "O" },
-      { code: "EX 4102",  name: "Human Resource Management", credits: 2, type: "O" },
-    ]
-  },
-  {
-    num: 8, label: "Semester 8", notation: "4200", credits: 6,
-    courses: [
-      { code: "ASF 4200", name: "Research Project", credits: 6, type: "C" },
-    ]
-  }
-];
+// Encapsulate everything in a DOMContentLoaded listener to prevent global namespace pollution
+document.addEventListener('DOMContentLoaded', () => {
 
-// Build panels
-const panelsEl = document.getElementById('semPanels');
-SEMESTERS.forEach(sem => {
-  const compulsory = sem.courses.filter(c => c.type === 'C');
-  const optional   = sem.courses.filter(c => c.type === 'O');
-
-  let rows = sem.courses.map(c => `
-    <tr>
-      <td><span class="code">${c.code}</span></td>
-      <td>${c.name}</td>
-      <td>${c.credits}</td>
-      <td><span class="badge badge-${c.type.toLowerCase()}">${c.type === 'C' ? 'Compulsory' : 'Optional'}</span></td>
-    </tr>
-  `).join('');
-
-  let training = sem.training
-    ? `<p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);font-family:'DM Mono',monospace;opacity:0.6;">⚠ Followed by 4-week In-Plant Training (Pass/Fail)</p>`
-    : '';
-
-  panelsEl.innerHTML += `
-    <div class="sem-panel${sem.num === 1 ? ' active' : ''}" id="sem-${sem.num}" role="tabpanel" aria-labelledby="tab-${sem.num}" ${sem.num !== 1 ? 'hidden' : ''}>
-      <div class="sem-header">
-        <span class="sem-title">${sem.label}</span>
-        <span class="sem-meta">Notation ${sem.notation} · ${sem.credits} credits${sem.optional ? ` (${sem.credits - sem.optional}C + ${sem.optional}O)` : ''}</span>
-      </div>
-      <div class="table-responsive">
-        <table class="courses-table">
-          <thead><tr><th>Code</th><th>Course Name</th><th>Credits</th><th>Type</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
-      ${training}
-    </div>
-  `;
-});
-
-// Tab switching
-document.getElementById('semTabs').addEventListener('click', e => {
-  const btn = e.target.closest('.tab-btn');
-  if (!btn) return;
-  
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.classList.remove('active');
-    b.setAttribute('aria-selected', 'false');
-  });
-  document.querySelectorAll('.sem-panel').forEach(p => {
-    p.classList.remove('active');
-    p.setAttribute('hidden', 'true');
-  });
-  
-  btn.classList.add('active');
-  btn.setAttribute('aria-selected', 'true');
-  
-  const targetPanel = document.getElementById('sem-' + btn.dataset.sem);
-  targetPanel.classList.add('active');
-  targetPanel.removeAttribute('hidden');
-});
-
-// Search
-const allCourses = SEMESTERS.flatMap(s => s.courses.map(c => ({ ...c, sem: s.label })));
-const searchInput = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
-
-function renderSearch(query) {
-  const q = query.trim().toLowerCase();
-  
-  searchResults.innerHTML = ''; 
-  if (!q) return;
-
-  const matches = allCourses.filter(c =>
-    c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
-  );
-
-  if (!matches.length) {
-    const p = document.createElement('p');
-    p.className = 'no-results';
-    p.textContent = 'No courses found.';
-    searchResults.appendChild(p);
-    return;
-  }
-
-  matches.forEach(c => {
-    const item = document.createElement('div');
-    item.className = 'search-result-item';
-
-    const codeSpan = document.createElement('span');
-    codeSpan.className = 'sri-code';
-    codeSpan.textContent = c.code;
-
-    const nameSpan = document.createElement('span');
-    nameSpan.className = 'sri-name';
-    nameSpan.textContent = c.name;
-
-    const badgeSpan = document.createElement('span');
-    badgeSpan.className = `badge badge-${c.type.toLowerCase()}`;
-    badgeSpan.style.marginRight = '0.5rem';
-    badgeSpan.textContent = c.type === 'C' ? 'C' : 'O';
-
-    const semSpan = document.createElement('span');
-    semSpan.className = 'sri-sem';
-    semSpan.textContent = c.sem;
-
-    item.append(codeSpan, nameSpan, badgeSpan, semSpan);
-    searchResults.appendChild(item);
-  });
-}
-
-searchInput.addEventListener('input', e => renderSearch(e.target.value));
-
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
-}, { threshold: 0.1 });
-reveals.forEach(el => io.observe(el));
-
-// Contextual Navigation Highlight
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-
-const navObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.classList.add('active');
-        }
-      });
+  const SEMESTERS = [
+    {
+      num: 1, label: "Semester 1", notation: "1100", credits: 16,
+      courses: [
+        { code: "ASF 1101", name: "Animal Biochemistry", credits: 2, type: "C" },
+        { code: "ASF 1102", name: "Anatomy & Physiology of Farm Animals", credits: 2, type: "C" },
+        { code: "ASF 1103", name: "Anatomy and Physiology of Fish", credits: 1, type: "C" },
+        { code: "ASF 1104", name: "Livestock Farm Practice", credits: 1, type: "C" },
+        { code: "ASF 1105", name: "Industrial Training in Animal Production & Fisheries", credits: 3, type: "C" },
+        { code: "ASF 1106", name: "Immunology", credits: 1, type: "C" },
+        { code: "ASF 1107", name: "Principles of Genetics & Animal Breeding", credits: 2, type: "C" },
+        { code: "AS 2102",  name: "Principles of Animal Nutrition", credits: 2, type: "C" },
+        { code: "AS 2103",  name: "Forage Production and Conservation", credits: 2, type: "C" },
+      ]
+    },
+    {
+      num: 2, label: "Semester 2", notation: "1200", credits: 18,
+      courses: [
+        { code: "ASF 1201", name: "Fish Nutrition", credits: 1, type: "C" },
+        { code: "ASF 1202", name: "Aquatic Plants & Live Feeds", credits: 2, type: "C" },
+        { code: "ASF 1203", name: "Fish Breeding & Fish Seed Production", credits: 3, type: "C" },
+        { code: "ASF 1204", name: "Analytical Techniques in Animal Feed & Products", credits: 2, type: "C" },
+        { code: "AS 2201",  name: "Ruminant Animal Production", credits: 2, type: "C" },
+        { code: "AS 2202",  name: "Poultry and Swine Production", credits: 2, type: "C" },
+        { code: "SS 1201",  name: "Properties & Functions of Soils", credits: 3, type: "C" },
+        { code: "CS 1201",  name: "Principles of Crop Production", credits: 3, type: "C" },
+      ]
+    },
+    {
+      num: 3, label: "Semester 3", notation: "2100", credits: 18, optional: 2,
+      courses: [
+        { code: "ASF 2101", name: "Marine & Inland Fisheries", credits: 3, type: "C" },
+        { code: "ASF 2102", name: "Animal Environmental Physiology", credits: 1, type: "C" },
+        { code: "ASF 2103", name: "Poultry, Cattle & Swine Diseases", credits: 3, type: "C" },
+        { code: "ASF 2104", name: "Shrimp and Prawn Farming", credits: 2, type: "C" },
+        { code: "ASF 2105", name: "Animal Behaviour & Welfare", credits: 2, type: "C" },
+        { code: "ASF 2106", name: "Microlivestock Production", credits: 2, type: "C" },
+        { code: "EB 2101",  name: "Principles of Economics", credits: 3, type: "C" },
+        { code: "ASF 2107", name: "Pet Animal Nutrition", credits: 2, type: "O" },
+        { code: "ASF 2108", name: "Equine Nutrition & Management", credits: 2, type: "O" },
+        { code: "ASF 2109", name: "Agro-ecotourism", credits: 1, type: "O" },
+      ]
+    },
+    {
+      num: 4, label: "Semester 4", notation: "2200", credits: 18, optional: 2, training: true,
+      courses: [
+        { code: "ASF 2201", name: "Beef Cattle Production", credits: 1, type: "C" },
+        { code: "ASF 2202", name: "Animal Waste Management", credits: 2, type: "C" },
+        { code: "ASF 2203", name: "Ornamental Fisheries Management", credits: 2, type: "C" },
+        { code: "ASF 2204", name: "Diseases of Fin Fish & Shell Fish", credits: 1, type: "C" },
+        { code: "AS 3201",  name: "Applied Animal Nutrition", credits: 3, type: "C" },
+        { code: "AS 3206",  name: "Feed Processing Technology", credits: 1, type: "C" },
+        { code: "EX 2201",  name: "Principles of Human Behaviour", credits: 3, type: "C" },
+        { code: "EX 2202",  name: "Career Development", credits: 1, type: "C" },
+        { code: "FT 3202",  name: "Food Microbiology", credits: 2, type: "C" },
+        { code: "ASF 2205", name: "Traditional Practices in Livestock Production", credits: 1, type: "O" },
+        { code: "FT 2202",  name: "Preservation of Agricultural Produce", credits: 2, type: "O" },
+        { code: "FT 1201",  name: "Biochemistry and Human Nutrition", credits: 3, type: "O" },
+        { code: "EB 2201",  name: "Development Economics", credits: 2, type: "O" },
+      ]
+    },
+    {
+      num: 5, label: "Semester 5", notation: "3100", credits: 17, optional: 2,
+      courses: [
+        { code: "ASF 3101", name: "Meat and Fish Processing Technology", credits: 2, type: "C" },
+        { code: "ASF 3102", name: "Fisheries Resource Management", credits: 2, type: "C" },
+        { code: "CS 3102",  name: "Statistical Methods I", credits: 2, type: "C" },
+        { code: "ASF 3103", name: "Livestock Farm Structures and Machinery", credits: 1, type: "C" },
+        { code: "AS 4102",  name: "Applied Genetics and Animal Breeding", credits: 2, type: "C" },
+        { code: "ASF 3104", name: "Milk Procurement and Marketing", credits: 1, type: "C" },
+        { code: "ASF 3105", name: "Slaughterhouse Management", credits: 1, type: "C" },
+        { code: "ASF 3106", name: "Livestock & Fish Legislation", credits: 2, type: "C" },
+        { code: "ASF 3107", name: "Wildlife Management", credits: 2, type: "C" },
+        { code: "EB 3101",  name: "Business Creation and Management", credits: 2, type: "O" },
+        { code: "EX 3101",  name: "Organizational Management", credits: 2, type: "O" },
+        { code: "FT 4101",  name: "Food Analysis", credits: 2, type: "O" },
+      ]
+    },
+    {
+      num: 6, label: "Semester 6", notation: "3200", credits: 17, optional: 2, training: true,
+      courses: [
+        { code: "AS 3202",  name: "Dairy Product Technology", credits: 2, type: "C" },
+        { code: "ASF 3201", name: "Poultry Meat Processing and Egg Technology", credits: 2, type: "C" },
+        { code: "AS 3203",  name: "Applied Animal Physiology", credits: 2, type: "C" },
+        { code: "AS 3205",  name: "Forage Resources and Production", credits: 2, type: "C" },
+        { code: "CS 3201",  name: "Design and Analysis of Experiments", credits: 2, type: "C" },
+        { code: "EB 3204",  name: "Marketing Management", credits: 2, type: "C" },
+        { code: "CS/AS 3201", name: "Farming Systems", credits: 2, type: "C" },
+        { code: "EB 3201",  name: "Project Analysis", credits: 1, type: "C" },
+        { code: "EX 3201",  name: "Extension Education", credits: 2, type: "O" },
+        { code: "EX 3202",  name: "Communication: Theory and Practice", credits: 2, type: "O" },
+        { code: "EB 3205",  name: "Agricultural Marketing", credits: 2, type: "O" },
+      ]
+    },
+    {
+      num: 7, label: "Semester 7", notation: "4100", credits: 18, optional: 2,
+      courses: [
+        { code: "AS 4109",  name: "Animal By-product Technology", credits: 2, type: "C" },
+        { code: "AS 4110",  name: "Livestock Farm Planning", credits: 2, type: "C" },
+        { code: "AS 4105",  name: "Scientific Research & Communication in Animal Science", credits: 1, type: "C" },
+        { code: "AS 4111",  name: "Integrated Animal Production Systems", credits: 2, type: "C" },
+        { code: "AS 4106",  name: "Animal Biotechnology", credits: 2, type: "C" },
+        { code: "ASF 4102", name: "Animal Quarantine and Bio-security", credits: 1, type: "C" },
+        { code: "CS 4103",  name: "Statistical Methods II", credits: 2, type: "C" },
+        { code: "EB 4111",  name: "Livestock and Fisheries Economics", credits: 2, type: "C" },
+        { code: "EB 4109",  name: "Advanced Project Analysis", credits: 2, type: "C" },
+        { code: "EX 4107",  name: "Gender Issues in Development", credits: 2, type: "O" },
+        { code: "EX 4102",  name: "Human Resource Management", credits: 2, type: "O" },
+      ]
+    },
+    {
+      num: 8, label: "Semester 8", notation: "4200", credits: 6,
+      courses: [
+        { code: "ASF 4200", name: "Research Project", credits: 6, type: "C" },
+      ]
     }
-  });
-}, {
-  rootMargin: '-50% 0px -50% 0px'
-});
+  ];
 
-sections.forEach(section => {
-  navObserver.observe(section);
-});
+  // Optimization: Build DOM string once to prevent thrashing
+  const panelsEl = document.getElementById('semPanels');
+  
+  const allPanelsHTML = SEMESTERS.map(sem => {
+    let rows = sem.courses.map(c => `
+      <tr>
+        <td><span class="code">${c.code}</span></td>
+        <td>${c.name}</td>
+        <td>${c.credits}</td>
+        <td><span class="badge badge-${c.type.toLowerCase()}">${c.type === 'C' ? 'Compulsory' : 'Optional'}</span></td>
+      </tr>
+    `).join('');
+
+    let training = sem.training
+      ? `<p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);font-family:'DM Mono',monospace;opacity:0.6;">⚠ Followed by 4-week In-Plant Training (Pass/Fail)</p>`
+      : '';
+
+    return `
+      <div class="sem-panel${sem.num === 1 ? ' active' : ''}" id="sem-${sem.num}" role="tabpanel" aria-labelledby="tab-${sem.num}" ${sem.num !== 1 ? 'hidden' : ''}>
+        <div class="sem-header">
+          <span class="sem-title">${sem.label}</span>
+          <span class="sem-meta">Notation ${sem.notation} · ${sem.credits} credits${sem.optional ? ` (${sem.credits - sem.optional}C + ${sem.optional}O)` : ''}</span>
+        </div>
+        <div class="table-responsive">
+          <table class="courses-table">
+            <thead><tr><th>Code</th><th>Course Name</th><th>Credits</th><th>Type</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        ${training}
+      </div>
+    `;
+  }).join('');
+
+  panelsEl.innerHTML = allPanelsHTML; // Inject once
+
+  // Tab switching (Utilizing proper HTML5 boolean attribute for hidden)
+  document.getElementById('semTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.sem-panel').forEach(p => {
+      p.classList.remove('active');
+      p.hidden = true; // Optimization: Standard property instead of setAttribute
+    });
+    
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    
+    const targetPanel = document.getElementById('sem-' + btn.dataset.sem);
+    targetPanel.classList.add('active');
+    targetPanel.hidden = false;
+  });
+
+  // Search Logic
+  const allCourses = SEMESTERS.flatMap(s => s.courses.map(c => ({ ...c, sem: s.label })));
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+
+  function renderSearch(query) {
+    const q = query.trim().toLowerCase();
+    
+    searchResults.innerHTML = ''; 
+    if (!q) return;
+
+    const matches = allCourses.filter(c =>
+      c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q)
+    );
+
+    if (!matches.length) {
+      const p = document.createElement('p');
+      p.className = 'no-results';
+      p.textContent = 'No courses found.';
+      searchResults.appendChild(p);
+      return;
+    }
+
+    matches.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'search-result-item';
+
+      const codeSpan = document.createElement('span');
+      codeSpan.className = 'sri-code';
+      codeSpan.textContent = c.code;
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'sri-name';
+      nameSpan.textContent = c.name;
+
+      const badgeSpan = document.createElement('span');
+      badgeSpan.className = `badge badge-${c.type.toLowerCase()}`;
+      badgeSpan.style.marginRight = '0.5rem';
+      badgeSpan.textContent = c.type === 'C' ? 'C' : 'O';
+
+      const semSpan = document.createElement('span');
+      semSpan.className = 'sri-sem';
+      semSpan.textContent = c.sem;
+
+      item.append(codeSpan, nameSpan, badgeSpan, semSpan);
+      searchResults.appendChild(item);
+    });
+  }
+
+  // Optimization: Debounce function for search input
+  function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+
+  searchInput.addEventListener('input', debounce(e => renderSearch(e.target.value), 300));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Contextual Navigation Highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, {
+    rootMargin: '-50% 0px -50% 0px'
+  });
+
+  sections.forEach(section => {
+    navObserver.observe(section);
+  });
+
+}); // End DOMContentLoaded
 </script>
 </body>
 </html>
